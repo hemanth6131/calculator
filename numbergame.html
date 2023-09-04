@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-image: url(num.jpg);
+            background-size: cover;
+            text-align: start;
+            font-size: 30px;
+            margin-top: 50px;
+            color: rgb(15, 14, 14);
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" style="margin-left: 100px; margin-top: 120px;">
+        <h2>Guess the Number</h2>
+        <p>Guess a number between 1 to 100</p>
+        <input type="Number" id="guessInput" min="1" max="100" style="height: 50px; width: 100px; border: none; font-size: 30px; text-align: center;">
+        <button id="guessBtn" style="height: 30px; width: 60px;">Submit</button>
+        <p id="message"> </p>
+    </div>
+    <script>
+        var randomNumber = Math.floor(Math.random() * 100) + 1;
+        var attempts = 0;
+
+        document.getElementById("guessBtn").addEventListener("click", function() {
+            var guess = parseInt(document.getElementById("guessInput").value);
+            attempts++;
+            if (guess === randomNumber) {
+                displayMessage("Congratulations!You guessed the Number in" + attempts + "attempt")
+                document.getElementById("guessBtn").disabled = true;
+            } else if (guess < randomNumber) {
+                displayMessage("Too low!try a higher number.");
+            } else {
+                displayMessage("Too high!try a lower number.");
+            }
+
+        });
+
+        function displayMessage(message) {
+            document.getElementById("message").textContent = message;
+        }
+    </script>
+</body>
+
+</html>
